@@ -73,7 +73,7 @@ class PlatsFixtures extends Fixture
         $plat5->setImage("lasagnes_viande.jpg");
             // on intègre la référence créée dans CategoriesFixtures.php
         $plat5->setCategorie($this->getReference(CategoriesFixtures::CATEGORIE_PASTA_REFERENCE));
-        $plat5->setActive(false);
+        $plat5->setActive(true);
 
         $manager->persist($plat5);
 
@@ -86,7 +86,7 @@ class PlatsFixtures extends Fixture
         $plat6->setImage("tagliatelles_saumon.webp");
             // on intègre la référence créée dans CategoriesFixtures.php
         $plat6->setCategorie($this->getReference(CategoriesFixtures::CATEGORIE_PASTA_REFERENCE));
-        $plat6->setActive(true);
+        $plat6->setActive(false);
 
         $manager->persist($plat6);
 

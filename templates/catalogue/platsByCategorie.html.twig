@@ -3,5 +3,23 @@
 {% block title %}Plats de la catégorie{% endblock %}
 
 {% block body %}
+        {% for titre in categorie %} 
 
+        <h1 class="d-flex justify-content-center m-5">{{ titre.libelle | upper }}'S</h1>
+
+        <section class="d-flex justify-content-center"><img src="/ASSETS/images_the_district/category/{{ titre.image }}" alt="{{ titre.libelle }}" width="400" height="400" class="border border-danger border-4"></section>
+
+        {% endfor %} 
+
+        <h1 class="d-flex justify-content-center m-5">Plats de la catégorie</h1>
+            <div class="container text-center">
+                <div class="row">
+
+                    {% for plat in allPlatsByCat %} 
+
+                        <section class="col-12 col-md-4 p-3 border border-3 border-success bg-secondary"><img src="/ASSETS/images_the_district/food/{{ plat.image }}" alt="{{ plat.libelle }}" width="200" height="200" class="border border-danger border-4"><div class="m-2"><p class="text-light fs-5 text">{{ plat.libelle }}</p></div><p class="fs-6">{{ plat.description }}</p><p class="fs-5 fw-bold">{{ plat.prix }}</p><div><a href="{{ path('panier_add_panier', { id: plat.id }) }}" class="border border-warning border-2 p-2 bg-dark text-danger">Ajouter au panier</a></div></section>
+
+                    {% endfor %} 
+                </div>
+            </div>
 {% endblock %}

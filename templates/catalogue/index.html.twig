@@ -3,6 +3,30 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    
+    <section class="d-sm-none d-md-block d-none d-sm-block">
+        <h1 class="d-flex justify-content-center m-5">Catégories</h1>
+            <div class="container text-center d-sm-none d-md-block d-none d-sm-block">
+                <div class="row">
 
+                    {% for categorie in categories %}
+
+                        <section class="col"><img src="/ASSETS/images_the_district/category/{{ categorie.image }}" alt="{{ categorie.libelle }}" width="200" height="200" class="border border-danger border-4"><div class="bg-black border border-white m-2"><a href="{{ path('app_plats_by_categorie', { 'categorie_id': categorie.id }) }}" class="text-danger fs-5 text">{{ categorie.libelle }}</a></div></section>
+
+                    {% endfor %}
+                </div>
+            </div>
+    </section>
+    <section>
+        <h1 class="d-flex justify-content-center m-5">Plats</h1>
+            <div class="container text-center">
+                <div class="row">
+
+                    {% for plat in plats %}
+
+                        <section class="col-12 col-md-4 p-3 border border-3 border-success bg-secondary"><img src="/ASSETS/images_the_district/food/{{ plat.image }}" alt="{{ plat.libelle }}" width="200" height="100" class="border border-danger border-4"><div class="m-2"><p class="text-light fs-5 text">{{ plat.libelle }}</p></div><p class="fs-6">{{ plat.description }}</p><p class="fs-5 fw-bold">{{ plat.prix }}</p><div><a href="{{ path('panier_add_panier', { id: plat.id }) }}" class="border border-warning border-2 p-2 bg-dark text-danger">Ajouter au panier</a></div></section>
+
+                    {% endfor %}
+                </div>
+            </div>
+    </section>
 {% endblock %}

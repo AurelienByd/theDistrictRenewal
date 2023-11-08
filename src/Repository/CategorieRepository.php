@@ -16,6 +16,33 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategorieRepository extends ServiceEntityRepository
 {
+    public function getSomeCategories()
+    {
+        $entityManager = $this->getEntityManager(); //on instancie l'entity manager
+
+        $query = $entityManager->createQuery( //on crée la requête 
+            'SELECT c
+            FROM App\Entity\Categorie c
+            WHERE c.active = 1'
+        );
+
+        return $query->getResult();
+    }
+
+    public function affichTitreCat($categorie_id)
+    { 
+        
+        $entityManager = $this->getEntityManager(); //on instancie l'entity manager
+
+        $query = $entityManager->createQuery( //on crée la requête 
+            'SELECT c
+            FROM App\Entity\Categorie c
+            WHERE c.active = 1 AND c.id=:id'
+        )->setParameter('id', $categorie_id);
+
+        return $query->getResult();
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Categorie::class);
