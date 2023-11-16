@@ -42,6 +42,13 @@ class Commande
         return $this->id;
     }
 
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getDateCommande(): ?\DateTimeInterface
     {
         return $this->date_commande;
