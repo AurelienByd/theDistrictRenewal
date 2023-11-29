@@ -3,5 +3,19 @@
 {% block title %}Commande{% endblock %}
 
 {% block body %}
+    <h1 class="ms-3 mt-3">Commande :</h1>
 
+    {% form_theme commandeForm 'bootstrap_5_layout.html.twig' %}
+
+    {{ form_start(commandeForm) }}
+        {{ form_row(commandeForm.adresse_livraison) }}
+
+        {{ form_row(commandeForm.adresse_facturation) }}
+
+        {{ form_row(commandeForm.mode_paiement) }}
+
+        {{ form_row(commandeForm.cgu) }}
+
+        {{ form_row(commandeForm.commit) }}
+    {{ form_end(commandeForm) }}
 {% endblock %}

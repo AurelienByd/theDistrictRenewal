@@ -11,25 +11,24 @@
     background-position-y: center;
 }
 
-footer {
+/* footer {
     width:860px;
     height:110px;
     bottom: 0px;
     border: 2px solid #000000;
     display: block;
-    margin: 50px auto  auto auto;
     background-image: url(/ASSETS/images_the_district/bg.jpg);
     background-size: cover;
     background-position-y: center;
-}
+} */
 
-#divlogos {
+/* #divlogos {
     display: flex;
     margin: 10px auto 10px auto;
     justify-content: center;
-}
+} */
 
-.logolien {
+/* .logolien {
     margin: auto 30px auto 30px;
 }
 
@@ -40,18 +39,18 @@ footer {
 
 .liensrgpd:hover {
     color: #ff00ea;
-}
+} */
 
-#divliensrgpd {
+/* #divliensrgpd {
     display: flex;
     margin: 10px auto 10px auto;
     justify-content: space-evenly;
-}
+} */
 
 @media (max-width: 992px) {
 
-    footer {
+    /* footer {
         width: 100%;
         height:140px;
-    }
+    } */
 }

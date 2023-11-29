@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <h1 class="d-flex justify-content-center m-5">Coordonnées :</h1>
+    <section class="d-flex justify-content-center">
+    {% for user in users %}
+        <section>
+            <p><b>Email :</b> {{user.email}}</p>
+            <p><b>Téléphone :</b> {{user.telephone}}</p>
+            <div>
+            <h5>Adresse :</h5>
+            <p>{{user.prenom}} {{user.nom}}</p>
+            <p>{{user.adresse}}</p>
+            <p>{{user.ville}} {{user.cp}}</p>
+            </div>
+            <a href="{{ path('app_update', { 'user_email': app.user.email }) }}">Modifier le profil</a>
+        </section>
+    {% endfor %}
+    </section>
+{% endblock %}

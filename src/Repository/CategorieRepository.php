@@ -24,7 +24,7 @@ class CategorieRepository extends ServiceEntityRepository
             'SELECT c
             FROM App\Entity\Categorie c
             WHERE c.active = 1'
-        );
+        )->setMaxResults(3);
 
         return $query->getResult();
     }

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le profil{% endblock %}
+
+{% block body %}
+    <h1 class="ms-3 mt-3">Modifications :</h1>
+
+    {% form_theme updateForm 'bootstrap_5_layout.html.twig' %}
+
+    {{ form_start(updateForm) }}
+        {# {{ form_row(updateForm.email) }}
+
+        {{ form_label(updateForm.plainPassword, 'Mot de passe') }}
+        {{ form_widget(updateForm.plainPassword) }}
+        {{ form_errors(updateForm.plainPassword) }} #}
+
+        {{ form_row(updateForm.nom) }}
+
+        {{ form_row(updateForm.prenom) }}
+
+        {{ form_row(updateForm.telephone) }}
+
+        {{ form_row(updateForm.adresse) }}
+
+        {{ form_row(updateForm.cp) }}
+
+        {{ form_row(updateForm.ville) }}
+
+        <button type="submit" class="btn-info mb-5">Enregistrer</button>
+    {{ form_end(updateForm) }}
+{% endblock %}
