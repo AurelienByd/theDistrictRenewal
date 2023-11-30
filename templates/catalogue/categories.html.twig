@@ -9,7 +9,7 @@
 
                     {% for categorie in categories %}
 
-                        <section class="col-12"><img src="/ASSETS/images_the_district/category/{{ categorie.image }}" alt="{{ categorie.libelle }}" width="200" height="200" class="border border-danger border-4"><div class="bg-black border border-white m-2"><a href="{{ path('app_plats_by_categorie', { 'categorie_id': categorie.id }) }}" class="text-danger fs-5 text">{{ categorie.libelle }}</a></div></section>
+                        <section class="col-12 col-md-4"><img src="/ASSETS/images_the_district/category/{{ categorie.image }}" alt="{{ categorie.libelle }}" width="200" height="200" class="border border-danger border-4"><div class="bg-black border border-white m-2"><a href="{{ path('app_plats_by_categorie', { 'categorie_id': categorie.id }) }}" class="text-danger fs-5 text">{{ categorie.libelle }}</a></div></section>
 
                     {% endfor %}
                 </div>

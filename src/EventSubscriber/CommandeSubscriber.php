@@ -15,12 +15,14 @@
     class CommandeSubscriber implements EventSubscriber
     {
         private $ms;
-        private $user;
+        private $mailer;
+        // private $user;
 
-        public function __construct(MailService $ms, Utilisateur $user)
+        public function __construct(MailService $ms, MailerInterface $mailer)//, Utilisateur $user)
         {
             $this->ms = $ms;
-            $this->user = $user;
+            $this->mailer = $mailer;
+            // $this->user = $user;
         }
 
         public function getSubscribedEvents()
@@ -39,12 +41,19 @@
 
     //     Vérifier si l'entité est un nouvel objet de type Commande;
     //    Si l'objet persité n'est pas de type Commande, on ne veut pas que le Subscriber se déclenche!
-            if ($entity instanceof Commande && $entity instanceof Detail) {
+            if ($entity instanceof Commande) {
 
-                //     Envoyer un e-mail à l'admin
+                // $this->ms->sendMail('service-commande-the-district@hotmail.com', 'user@hotmail.com', 'Confirmation de la commande', 'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
+//$this->user->getEmail()
 
-                $this->ms->sendMail('service-commande-the-district@hotmail.com', $this->user->getEmail(), 'Confirmation de la commande', 'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
+                $email = (new Email())
+                    ->from('service-commande-the-district@hotmail.com')
+                    ->to('user@hotmail.com')
+                    ->subject('Confirmation de la commande')
+                    ->text('Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
+                    // ->html('<h1>'.'Confirmation de la commande'.'</h1><p>'.'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.'.'</p>');
 
+                $this->mailer->send($email);
             }
         }
     }
