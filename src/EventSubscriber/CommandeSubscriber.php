@@ -4,7 +4,6 @@
 
     use App\Entity\Commande;
     use App\Entity\Detail;
-    use App\Entity\Utilisateur;
     use Doctrine\Common\EventSubscriber;
     use Doctrine\ORM\Events;
     use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -16,13 +15,11 @@
     {
         private $ms;
         private $mailer;
-        // private $user;
 
-        public function __construct(MailService $ms, MailerInterface $mailer)//, Utilisateur $user)
+        public function __construct(MailService $ms, MailerInterface $mailer)
         {
             $this->ms = $ms;
             $this->mailer = $mailer;
-            // $this->user = $user;
         }
 
         public function getSubscribedEvents()
@@ -36,24 +33,27 @@
 
         public function postPersist(LifecycleEventArgs $args)
         {
-    //        $args->getObject() nous retourne l'entité concernée par l'événement postPersist
+    //     $args->getObject() nous retourne l'entité concernée par l'événement postPersist
             $entity = $args->getObject();
 
     //     Vérifier si l'entité est un nouvel objet de type Commande;
     //    Si l'objet persité n'est pas de type Commande, on ne veut pas que le Subscriber se déclenche!
             if ($entity instanceof Commande) {
 
-                // $this->ms->sendMail('service-commande-the-district@hotmail.com', 'user@hotmail.com', 'Confirmation de la commande', 'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
-//$this->user->getEmail()
+                $user = $entity->getUtilisateur();
 
-                $email = (new Email())
-                    ->from('service-commande-the-district@hotmail.com')
-                    ->to('user@hotmail.com')
-                    ->subject('Confirmation de la commande')
-                    ->text('Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
-                    // ->html('<h1>'.'Confirmation de la commande'.'</h1><p>'.'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.'.'</p>');
+                $email = $user->getEmail();
 
-                $this->mailer->send($email);
+                $this->ms->sendMail('service-commande-the-district@hotmail.com', $email, 'Confirmation de la commande', 'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
+
+                // $email = (new Email())
+                //     ->from('service-commande-the-district@hotmail.com')
+                //     ->to('user@hotmail.com')
+                //     ->subject('Confirmation de la commande')
+                //     ->text('Bonjour, nous vous confirmons que votre commande a bien été prise en compte.');
+                //     // ->html('<h1>'.'Confirmation de la commande'.'</h1><p>'.'Bonjour, nous vous confirmons que votre commande a bien été prise en compte.'.'</p>');
+
+                // $this->mailer->send($email);
             }
         }
     }

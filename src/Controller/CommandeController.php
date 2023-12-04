@@ -60,7 +60,11 @@ class CommandeController extends AbstractController
         $commande->setEtat(0);
         $commande->setUtilisateur($this->getUser());
 
-        // dd($commande);
+        $entityManager->persist($commande);
+
+        foreach($panier as $id => $quantity) {
+
+        $plat = $platRepository->find($id);
 
         $commandeDetails = new Detail();
 
@@ -69,11 +73,10 @@ class CommandeController extends AbstractController
         $commandeDetails->setCommande($commande);
         $commandeDetails->setQuantite($quantity);
 
-        // dd($commandeDetails);
-
-        //On persiste et on flush
-        $entityManager->persist($commande);
         $entityManager->persist($commandeDetails);
+
+        }
+
         $entityManager->flush();
 
         // $email = (new Email())

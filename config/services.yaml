@@ -23,7 +23,7 @@ services:
     # add more service definitions when explicit configuration is needed
     App\EventSubscriber\CommandeSubscriber:
         arguments:
-            # $ms: '@App\Service\MailService'
+            $ms: '@App\Service\MailService'
             $mailer: '@Symfony\Component\Mailer\MailerInterface'
         tags:
             - { name: doctrine.event_subscriber }

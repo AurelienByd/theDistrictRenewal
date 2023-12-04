@@ -8,6 +8,7 @@
     {% form_theme commandeForm 'bootstrap_5_layout.html.twig' %}
 
     {{ form_start(commandeForm) }}
+        <input type='hidden' value='{{ app.user.email }}'>
         {{ form_row(commandeForm.adresse_livraison) }}
 
         {{ form_row(commandeForm.adresse_facturation) }}
